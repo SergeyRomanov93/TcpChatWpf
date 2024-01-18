@@ -7,30 +7,41 @@ namespace ChatClient.Network
     {
         private TcpClient _tcpClient;
 
-        public PacketReader PacketReader;
+        public PacketReader? PacketReader;
 
-        public event Action connectedEvent;
+        public event Action? connectedEvent;
+        public event Action? messageReceivedEvent;
+        public event Action? userDisconnectEvent;
+
         public Server()
         {
             _tcpClient = new TcpClient();
         }
 
-        public void ConnectToServer(string username)
+        public void Connect(string username, string ipAddress)
         {
-            if(!_tcpClient.Connected)
+            if (!_tcpClient.Connected)
             {
-                _tcpClient.Connect("172.30.10.51", 8800);
+                _tcpClient.Connect(ipAddress, 8800);
                 PacketReader = new PacketReader(_tcpClient.GetStream());
 
                 if(!string.IsNullOrEmpty(username))
                 {
                     var connectPacket = new PacketBuilder();
                     connectPacket.WriteOpCode(0);
-                    connectPacket.WriteString(username);
+                    connectPacket.WriteMessage(username);
                     _tcpClient.Client.Send(connectPacket.GetPacketBytes());
                 }
                 ReadPackets();
             }
+        }
+
+        public void SendMessageToServer(string message)
+        {
+            var messagePacket = new PacketBuilder();
+            messagePacket.WriteOpCode(5);
+            messagePacket.WriteMessage(message);
+            _tcpClient.Client.Send(messagePacket.GetPacketBytes());
         }
 
         private void ReadPackets()
@@ -39,12 +50,18 @@ namespace ChatClient.Network
             {
                 while(true)
                 {
-                    var opcode = PacketReader.ReadByte();
+                    var opcode = PacketReader?.ReadByte();
 
                     switch (opcode)
                     {
                         case 1:
                             connectedEvent?.Invoke();
+                            break;
+                        case 5:
+                            messageReceivedEvent?.Invoke();
+                            break;
+                        case 10:
+                            userDisconnectEvent?.Invoke();
                             break;
                         default:
                             Console.WriteLine("wOw");

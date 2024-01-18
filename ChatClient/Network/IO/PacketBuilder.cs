@@ -16,7 +16,7 @@ namespace ChatClient.Network.IO
             _memoryStream.WriteByte(opCode);
         }
 
-        public void WriteString(string message)
+        public void WriteMessage(string message)
         {
             var messageLength = message.Length;
             _memoryStream.Write(BitConverter.GetBytes(messageLength));

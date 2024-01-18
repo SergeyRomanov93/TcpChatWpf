@@ -1,6 +1,4 @@
 ﻿using ChatServer.Network.IO;
-using System;
-using System.Data.SqlTypes;
 using System.Net;
 using System.Net.Sockets;
 
@@ -10,10 +8,12 @@ namespace ChatServer
     {
         private static List<Client> _users;
         private static TcpListener _listener;
+
         static void Main(string[] args)
         {
+
             _users = new List<Client>();
-            _listener = new TcpListener(IPAddress.Parse("172.30.10.51"), 8800);
+            _listener = new TcpListener(IPAddress.Parse("192.168.56.1"), 8800);
             _listener.Start();
 
             while(true)
@@ -39,6 +39,33 @@ namespace ChatServer
                     user.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
                 }
             }
+        }
+
+        public static void BroadcastMessage(string message)
+        {
+            foreach (var user in _users)
+            {
+                var messagePacket = new PacketBuilder();
+                messagePacket.WriteOpCode(5);
+                messagePacket.WriteMessage(message);
+                user.ClientSocket.Client.Send(messagePacket.GetPacketBytes());
+            }
+        }
+
+        public static void BroadcastDisconnect(string uid)
+        {
+            var disconnectedUser = _users.Where(x => x.Uid.ToString() == uid).FirstOrDefault();
+            _users.Remove(disconnectedUser);
+
+            foreach (var user in _users)
+            {
+                var broadcastPacket = new PacketBuilder();
+                broadcastPacket.WriteOpCode(10);
+                broadcastPacket.WriteMessage(uid);
+                user.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
+            }
+
+            BroadcastMessage($"[{disconnectedUser.Username}] отключился от сервера!");
         }
     }
 }

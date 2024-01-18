@@ -3,40 +3,90 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:ChatClient.ViewModel"
+        xmlns:viewmodel="clr-namespace:ChatClient.ViewModel" 
+        xmlns:local="clr-namespace:ChatClient.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="470" Width="815">
 
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <DockPanel>
-            <TextBox Height="25"
+
+            <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Top"
+                        Margin="5">
+                
+                <RadioButton Content="TCP-клиент" IsChecked="{Binding IsTcpClient, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <RadioButton Content="TCP-сервер" IsChecked="{Binding IsTcpServer, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5,0,0,0"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                        DockPanel.Dock="Top"
+                        Margin="5">
+                
+                <TextBlock Text="IP: "/>
+                
+                <TextBox Height="25" 
+                         Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}"
+                         DockPanel.Dock="Top"/>
+                
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                        DockPanel.Dock="Top"
+                        Margin="5">
+                
+                <TextBlock Text="Никнейм: "/>
+                
+                <TextBox Height="25"
                      DockPanel.Dock="Top"
                      Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                
+            </StackPanel>
+
             <Button Height="25"
                     DockPanel.Dock="Top"
                     Content="Подключиться"
-                    Command="{Binding ConnectToServerCommand}"/>
-            <ListView />
+                    Command="{Binding ConnectToServerCommand}"
+                    Margin="5"/>
+            
+            <ListView ItemsSource="{Binding Users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Username}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </DockPanel>
 
         <StackPanel Grid.Column="1">
-            <ListView Height="380"/>
+            
+            <ListView Height="380"
+                      ItemsSource="{Binding Messages}"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="55"
                          Width="515"
-                         VerticalContentAlignment="Center"/>
+                         VerticalContentAlignment="Center"
+                         Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
+                
                 <Button Width="85"
-                        Content="Отправить"/>
+                        Content="Отправить"
+                        Command="{Binding SendMessageCommand}"/>
+                
             </StackPanel>
         </StackPanel>
     </Grid>
