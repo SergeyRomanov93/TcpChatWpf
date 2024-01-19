@@ -42,14 +42,14 @@ namespace ChatServer
                     {
                         case 5:
                             var message = _packetReader.ReadMessage();
-                            Console.WriteLine($"[{DateTime.Now}] : Сообщение отправлено! {message}");
+                            Console.WriteLine($"[{DateTime.Now}] : Message received! {message}");
                             Program.BroadcastMessage($"[{DateTime.Now}]: [{Username}]: {message}");
                             break;
                     }
                 }
                 catch(Exception)
                 {
-                    Console.WriteLine($"[{Uid.ToString()}]: Соединение прервано!");
+                    Console.WriteLine($"[{Uid.ToString()}]: Lost connection!");
                     Program.BroadcastDisconnect(Uid.ToString());
                     ClientSocket.Close();
                     break;

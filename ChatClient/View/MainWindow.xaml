@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:ChatClient.ViewModel" 
-        xmlns:local="clr-namespace:ChatClient.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="470" Width="815">
 
@@ -21,27 +20,16 @@
 
         <DockPanel>
 
-            <StackPanel Orientation="Horizontal"
-                        DockPanel.Dock="Top"
-                        Margin="5">
-                
-                <RadioButton Content="TCP-клиент" IsChecked="{Binding IsTcpClient, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <RadioButton Content="TCP-сервер" IsChecked="{Binding IsTcpServer, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="5,0,0,0"/>
-
-            </StackPanel>
-
             <StackPanel Orientation="Vertical"
                         DockPanel.Dock="Top"
                         Margin="5">
-                
+
                 <TextBlock Text="IP: "/>
-                
-                <TextBox Height="25" 
-                         Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}"
-                         DockPanel.Dock="Top"/>
-                
+
+                <TextBox Height="25"
+                     DockPanel.Dock="Top"
+                     Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}"/>
+
             </StackPanel>
 
             <StackPanel Orientation="Vertical"

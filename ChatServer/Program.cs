@@ -11,10 +11,21 @@ namespace ChatServer
 
         static void Main(string[] args)
         {
+            Console.Write("Введите адрес сервера: ");
+            var ipAddress = Console.ReadLine();
 
-            _users = new List<Client>();
-            _listener = new TcpListener(IPAddress.Parse("192.168.56.1"), 8800);
-            _listener.Start();
+            try
+            {
+                _users = new List<Client>();
+                _listener = new TcpListener(IPAddress.Parse(ipAddress), 8800);
+                _listener.Start();
+                Console.WriteLine("Сервер активен");
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка подключения!");
+                return;
+            }
 
             while(true)
             {
@@ -55,6 +66,8 @@ namespace ChatServer
         public static void BroadcastDisconnect(string uid)
         {
             var disconnectedUser = _users.Where(x => x.Uid.ToString() == uid).FirstOrDefault();
+            var disconnectedMessage = $"[{disconnectedUser.Username}] disconnected!";
+
             _users.Remove(disconnectedUser);
 
             foreach (var user in _users)
@@ -65,7 +78,7 @@ namespace ChatServer
                 user.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
             }
 
-            BroadcastMessage($"[{disconnectedUser.Username}] отключился от сервера!");
+            BroadcastMessage(disconnectedMessage);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using ChatClient.Command;
-using ChatClient.Enum;
 using ChatClient.Model;
 using ChatClient.Network;
 using Prism.Mvvm;
@@ -11,50 +10,6 @@ namespace ChatClient.ViewModel
     internal class MainViewModel : BindableBase
     {
         private Server _server;
-        private ConnectionType _connectionType = ConnectionType.TcpServer;
-
-        public ConnectionType ConnectionType
-        {
-            get { return _connectionType; }
-            set
-            {
-                if( _connectionType == value )
-                    return;
-
-                _connectionType = value;
-                RaisePropertyChanged("ConnectionType");
-                RaisePropertyChanged("IsTcpClient");
-                RaisePropertyChanged("IsTcpServer");
-                RaisePropertyChanged("GetResult");
-            }
-        }
-
-        public bool IsTcpClient
-        {
-            get { return ConnectionType == ConnectionType.TcpClient; }
-            set { ConnectionType = value ? ConnectionType.TcpClient : ConnectionType; }
-        }
-
-        public bool IsTcpServer
-        {
-            get { return ConnectionType == ConnectionType.TcpServer; }
-            set { ConnectionType = value ? ConnectionType.TcpServer : ConnectionType; }
-        }
-
-        public string GetResult
-        {
-            get
-            {
-                switch (ConnectionType)
-                {
-                    case ConnectionType.TcpClient:
-                        return "TCP-клиент";
-                    case ConnectionType.TcpServer:
-                        return "TCP-сервер";
-                }
-                return "";
-            }
-        }
 
         public RelayCommand ConnectToServerCommand { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
@@ -105,8 +60,6 @@ namespace ChatClient.ViewModel
             {
                 Application.Current.Dispatcher.Invoke(() => Users.Add(user));
             }
-
-            //see video https://www.youtube.com/watch?v=I-Xmp-mulz4 36:10
         }
     }
 }
