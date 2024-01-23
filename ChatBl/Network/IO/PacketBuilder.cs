@@ -1,12 +1,11 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Text;
 
-namespace ChatClient.Network.IO
+namespace ChatBl.Network.IO
 {
-    internal class PacketBuilder
+    public class PacketBuilder
     {
         private MemoryStream _memoryStream;
-        public PacketBuilder() 
+        public PacketBuilder()
         {
             _memoryStream = new MemoryStream();
         }

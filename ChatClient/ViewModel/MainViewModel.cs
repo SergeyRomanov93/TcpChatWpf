@@ -1,6 +1,6 @@
-﻿using ChatClient.Command;
-using ChatClient.Model;
-using ChatClient.Network;
+﻿using ChatBl.Model;
+using ChatBl.Network;
+using ChatClient.Command;
 using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Windows;

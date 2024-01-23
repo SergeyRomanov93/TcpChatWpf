@@ -1,10 +1,5 @@
-﻿using ChatServer.Network.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ChatBl.Network.IO;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatServer
 {
@@ -47,7 +42,7 @@ namespace ChatServer
                             break;
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Console.WriteLine($"[{Uid.ToString()}]: Lost connection!");
                     Program.BroadcastDisconnect(Uid.ToString());

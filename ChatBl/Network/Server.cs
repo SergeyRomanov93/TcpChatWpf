@@ -1,9 +1,9 @@
-﻿using ChatClient.Network.IO;
+﻿using ChatBl.Network.IO;
 using System.Net.Sockets;
 
-namespace ChatClient.Network
+namespace ChatBl.Network
 {
-    internal class Server
+    public class Server
     {
         private TcpClient _tcpClient;
 
@@ -25,7 +25,7 @@ namespace ChatClient.Network
                 _tcpClient.Connect(ipAddress, 8800);
                 PacketReader = new PacketReader(_tcpClient.GetStream());
 
-                if(!string.IsNullOrEmpty(username))
+                if (!string.IsNullOrEmpty(username))
                 {
                     var connectPacket = new PacketBuilder();
                     connectPacket.WriteOpCode(0);
@@ -48,7 +48,7 @@ namespace ChatClient.Network
         {
             Task.Run(() =>
             {
-                while(true)
+                while (true)
                 {
                     var opcode = PacketReader?.ReadByte();
 

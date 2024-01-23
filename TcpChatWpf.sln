@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "ChatClient\ChatClient.csproj", "{F20F5439-FCE0-404B-87E6-C601F5C6D5CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatClient", "ChatClient\ChatClient.csproj", "{F20F5439-FCE0-404B-87E6-C601F5C6D5CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer", "ChatServer\ChatServer.csproj", "{35CCAE06-B9D7-44F3-9960-0F2F54D09F26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatServer", "ChatServer\ChatServer.csproj", "{35CCAE06-B9D7-44F3-9960-0F2F54D09F26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LIB", "LIB", "{6B4A1589-7358-4AE6-A58F-8464D75B4C09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBl", "ChatBl\ChatBl.csproj", "{FE3F22B2-27CF-4037-81E9-90DF917E2BA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClientGtk", "ChatClientGtk\ChatClientGtk.csproj", "{B23AE803-0871-4C66-B815-FB18015B12DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,20 @@ Global
 		{35CCAE06-B9D7-44F3-9960-0F2F54D09F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35CCAE06-B9D7-44F3-9960-0F2F54D09F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35CCAE06-B9D7-44F3-9960-0F2F54D09F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3F22B2-27CF-4037-81E9-90DF917E2BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3F22B2-27CF-4037-81E9-90DF917E2BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3F22B2-27CF-4037-81E9-90DF917E2BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3F22B2-27CF-4037-81E9-90DF917E2BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23AE803-0871-4C66-B815-FB18015B12DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23AE803-0871-4C66-B815-FB18015B12DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23AE803-0871-4C66-B815-FB18015B12DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23AE803-0871-4C66-B815-FB18015B12DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE3F22B2-27CF-4037-81E9-90DF917E2BA9} = {6B4A1589-7358-4AE6-A58F-8464D75B4C09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E4C38D5-4CD4-4FD1-8788-229D60BAF7B3}
