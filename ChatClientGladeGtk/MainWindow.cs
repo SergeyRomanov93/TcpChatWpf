@@ -2,7 +2,7 @@ using Gtk;
 using System;
 using UI = Gtk.Builder.ObjectAttribute;
 
-namespace ChatClientGtk
+namespace ChatClientGladeGtk
 {
     internal class MainWindow : Window
     {
@@ -15,10 +15,10 @@ namespace ChatClientGtk
 
         private MainWindow(Builder builder) : base(builder.GetRawOwnedObject("MainWindow"))
         {
+            Application.Init();
             builder.Autoconnect(this);
 
             DeleteEvent += Window_DeleteEvent;
-            _button1.Clicked += Button1_Clicked;
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)

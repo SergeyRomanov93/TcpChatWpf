@@ -1,7 +1,7 @@
 using Gtk;
 using System;
 
-namespace ChatClientGtk
+namespace ChatClientGladeGtk
 {
     internal class Program
     {
@@ -10,10 +10,10 @@ namespace ChatClientGtk
         {
             Application.Init();
 
-            var app = new Application("org.ChatClientGtk.ChatClientGtk", GLib.ApplicationFlags.None);
+            var app = new Application("org.ChatClientGladeGtk.ChatClientGladeGtk", GLib.ApplicationFlags.None);
             app.Register(GLib.Cancellable.Current);
 
-            var win = new ChatView();
+            var win = new MainWindow();
             app.AddWindow(win);
 
             win.Show();

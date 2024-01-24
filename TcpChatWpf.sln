@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBl", "ChatBl\ChatBl.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClientGtk", "ChatClientGtk\ChatClientGtk.csproj", "{B23AE803-0871-4C66-B815-FB18015B12DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClientGladeGtk", "ChatClientGladeGtk\ChatClientGladeGtk.csproj", "{55583C19-0D83-4C70-9F61-06E23A81D3C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B23AE803-0871-4C66-B815-FB18015B12DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B23AE803-0871-4C66-B815-FB18015B12DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B23AE803-0871-4C66-B815-FB18015B12DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55583C19-0D83-4C70-9F61-06E23A81D3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55583C19-0D83-4C70-9F61-06E23A81D3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55583C19-0D83-4C70-9F61-06E23A81D3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55583C19-0D83-4C70-9F61-06E23A81D3C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
