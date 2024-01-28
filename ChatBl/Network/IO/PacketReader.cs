@@ -18,7 +18,7 @@ namespace ChatBl.Network.IO
             messageBuffer = new byte[length];
             _networkStream.Read(messageBuffer, 0, length);
 
-            var message = Encoding.Unicode.GetString(messageBuffer);
+            var message = Encoding.ASCII.GetString(messageBuffer);
             return message;
         }
     }
