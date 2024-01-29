@@ -17,9 +17,10 @@ namespace ChatBl.Network.IO
 
         public void WriteMessage(string message)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var messageLength = message.Length;
             _memoryStream.Write(BitConverter.GetBytes(messageLength));
-            _memoryStream.Write(Encoding.ASCII.GetBytes(message));
+            _memoryStream.Write(Encoding.GetEncoding("windows-1251").GetBytes(message));
         }
 
         public byte[] GetPacketBytes()

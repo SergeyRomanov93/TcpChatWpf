@@ -17,8 +17,9 @@ namespace ChatBl.Network.IO
             var length = ReadInt32();
             messageBuffer = new byte[length];
             _networkStream.Read(messageBuffer, 0, length);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var message = Encoding.ASCII.GetString(messageBuffer);
+            var message = Encoding.GetEncoding("windows-1251").GetString(messageBuffer);
             return message;
         }
     }

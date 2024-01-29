@@ -68,7 +68,7 @@ namespace ChatClientGladeGtk
             if (!Users.Any(x => x.Uid == user.Uid))
             {
                 Users.Add(user);
-                _messageBox.Text += $"\r{user.Username} connected";
+                _messageBox.Text += $"\r{user.Username} подключился";
                 _userBox.Text += $"\r{user.Username}";
             }
         }
