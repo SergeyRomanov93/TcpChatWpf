@@ -1,7 +1,6 @@
 ﻿using ChatBl.Network.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace ChatServer
 {
@@ -28,7 +27,7 @@ namespace ChatServer
                 return;
             }
 
-            while(true)
+            while (true)
             {
                 var client = new Client(_listener.AcceptTcpClient());
                 _users.Add(client);
@@ -40,9 +39,9 @@ namespace ChatServer
 
         static void BroadcastConnection()
         {
-            foreach(var user in _users)
+            foreach (var user in _users)
             {
-                foreach(var usr in _users)
+                foreach (var usr in _users)
                 {
                     var broadcastPacket = new PacketBuilder();
                     broadcastPacket.WriteOpCode(1);
